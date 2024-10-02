@@ -84,11 +84,8 @@ local_settings.py
 db.sqlite3
 .idea
 venv
-apps/app/migrations/*
-apps/users/migrations/*
 .env
-static/*
-media/*
+
 
 
 
