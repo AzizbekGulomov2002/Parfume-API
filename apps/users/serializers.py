@@ -9,18 +9,18 @@ from django.utils import timezone
 User = get_user_model()
 
 
-class OTPChoiceTypeSerializer(serializers.Serializer):
-    user_id = serializers.UUIDField()
-    email = serializers.EmailField(required=False, default="NULL")
-    phone = serializers.CharField(required=False, default="NULL")
+# class OTPChoiceTypeSerializer(serializers.Serializer):
+#     user_id = serializers.UUIDField()
+#     email = serializers.EmailField(required=False, default="NULL")
+    # phone = serializers.CharField(required=False, default="NULL")
 
-    def validate(self, data):
-        errors = {}
-        if data.get('email') == "NULL" and data.get('phone') == "NULL":
-            errors['phone'] = "Phone or email must be provided."
-        if errors:
-            raise serializers.ValidationError(errors)
-        return data
+    # def validate(self, data):
+    #     errors = {}
+    #     if data.get('email') == "NULL" and data.get('phone') == "NULL":
+    #         errors['phone'] = "Phone or email must be provided."
+    #     if errors:
+    #         raise serializers.ValidationError(errors)
+    #     return data
 
 
 class UserRegisterSerializer(serializers.ModelSerializer):
@@ -28,12 +28,12 @@ class UserRegisterSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = CustomUser
-        fields = ['email', 'phone', 'first_name', 'last_name', 'password']
+        fields = ['email', 'first_name', 'last_name', 'password']
 
     def create(self, validated_data):
         user = CustomUser(
             email=validated_data['email'],
-            phone=validated_data['phone'],
+            # phone=validated_data['phone'],
             first_name=validated_data['first_name'],
             last_name=validated_data['last_name'],
         )

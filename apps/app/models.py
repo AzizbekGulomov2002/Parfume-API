@@ -37,17 +37,17 @@ class ProductImages(models.Model):
 
 # Brand Model
 class Brand(models.Model):
-    logo = models.ImageField(upload_to='brand_logos/')
-    title = models.CharField(max_length=255)
+    image_ru = models.ImageField(upload_to='banners/')
+    image_en = models.ImageField(upload_to='banners/')
+    link = models.URLField()
 
     def __str__(self):
         return self.title
 
 # Banner Model
 class Banner(models.Model):
-    image_ru = models.ImageField(upload_to='banners/')
-    image_en = models.ImageField(upload_to='banners/')
-    link = models.URLField()
+    logo = models.ImageField(upload_to='brand_logos/')
+    title = models.CharField(max_length=255)
 
 # Contact Model
 class Contact(models.Model):

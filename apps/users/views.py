@@ -36,7 +36,7 @@ class RegisterAPIView(APIView):
 
         # Check if email or phone already exists
         email = request.data.get('email')
-        phone = request.data.get('phone')
+        # phone = request.data.get('phone')
         error_messages = {}
 
         # Validate email uniqueness
@@ -44,8 +44,8 @@ class RegisterAPIView(APIView):
             error_messages['email'] = "This email is already in use."
 
         # Validate phone uniqueness
-        if CustomUser.objects.filter(phone=phone).exists():
-            error_messages['phone'] = "This phone number is already in use."
+        # if CustomUser.objects.filter(phone=phone).exists():
+        #     error_messages['phone'] = "This phone number is already in use."
 
         # If there are any errors, return them
         if error_messages:
@@ -243,10 +243,7 @@ class ForgotPasswordView(APIView):
         try:
             user = CustomUser.objects.get(email=username_or_email)
         except CustomUser.DoesNotExist:
-            try:
-                user = CustomUser.objects.get(phone=username_or_email)
-            except CustomUser.DoesNotExist:
-                return Response({
+            return Response({
                     "error": "No user found with this username or email."
                 }, status=status.HTTP_400_BAD_REQUEST)
 
@@ -394,7 +391,7 @@ class MeAPIView(APIView):
         user_data = {
             "full_name": user.full_name,
             "email": user.email,
-            "phone": user.phone,
+            # "phone": user.phone,
             "is_active": user.is_active,
             "image": image_url  # Include the image URL (or None) directly
         }
